@@ -7,6 +7,7 @@ import Layout from './modules/layout/layout';
 import Design from './modules/design/design';
 import Animations from './modules/animations/animations';
 import Support from './modules/support/support';
+import Text from './modules/text/text';
 
 export default class settings extends React.Component {
     settingsUpdate (key, value) {
@@ -20,13 +21,10 @@ export default class settings extends React.Component {
             <UI.appSettings>
                 <UI.panelTabs defaultTabIndex={0}>
                     <Main tab="Main"/>
-                    <Settings tab="Settings" onUpdate={this.settingsUpdate}/>
                     <Layout tab="Layout" onUpdate={this.settingsUpdate}/>
+                    <Settings tab="Settings" onUpdate={this.settingsUpdate}/>
+                    <Text tab="Text" onUpdate={this.settingsUpdate}/>
                     <Design tab="Design" onUpdate={this.settingsUpdate}/>
-                    <Animations tab="Animations" onUpdate={this.settingsUpdate}/>
-                    <Support tab="Support"/>
-                    <hr className="divider-short"/>
-                    <UI.button label="Upgrade" className="btn-upgrade-nav"/>
                 </UI.panelTabs>
             </UI.appSettings>
         )

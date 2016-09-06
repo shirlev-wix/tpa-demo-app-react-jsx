@@ -9,13 +9,22 @@ export default class Main extends React.Component {
     render () {
         return (
             <div className="main-tab">
-                <img className="app-logo" src="logo.svg" alt="app logo"/>
+                <img className="app-logo" src="logo.png" alt="app logo"/>
                 <p className="app-description">
-                    This is the Wix App settings demo.
+                    Engage with people visiting your site.
                     <br/>
-                    Please add a short description of your App + CTA for the main action.
+                    To start chatting with your visitors activate this chat from Wix Engage below.
                 </p>
-                <UI.button className="btn-confirm-primary" label="Main CTA" onClick={()=>this.onClick()}/>
+                <UI.button className="btn-confirm-primary" label="Activate Chat" onClick={()=>this.onClick()}/>
+
+                <div className="main-footer">
+                    <hr className="divider-long"/>
+                    <p>
+                        Wix Chat needs the Wix native app installed on your mobile device.
+                    </p>
+                    <img className="google-play" src="google-play.png" alt="download the app from google play"/>
+                    <img className="app-store" src="app-store.png" alt="download the app from app store"/>
+                </div>
             </div>
         )
     }

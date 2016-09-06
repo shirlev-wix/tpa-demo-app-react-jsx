@@ -19,7 +19,32 @@
     color: $main-text-color;
   }
 
+  .main-footer {
+    position: absolute;
+    bottom: 0;
+    padding-top: 37px;
+    padding-bottom: 39px;
+    text-align: center;
+    line-height: 21px;
+    font-size: $main-text-size;
+    color: $main-text-color;
+
+    p {
+      margin: 32px 15px 25px;
+    }
+  }
+
   .main-cta-btn {
     width: 180px;
+  }
+
+  .app-store,
+  .google-play {
+    width: 102px;
+    height: 30px;
+  }
+
+  .google-play {
+    margin-right: 13px;
   }
 }

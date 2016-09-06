@@ -1,29 +1,37 @@
 import UI from 'editor-ui-lib';
 import React from 'react'
+import Thumbnails from './../../components/thumbnails/thumbnails'
+import './layout.scss';
 
 export default class Layout extends React.Component {
     render() {
         return (
-            <div>
-                <hr className="divider-long"/>
-                <UI.sectionDividerLabeled label="How does this gallery look?"/>
-                <hr className="divider-long"/>
-
-                <UI.slider
-                    title="Columns"
-                    min={1}
-                    max={36}
-                    defaultValue={7}
-                    onChange={(newVal)=>this.props.onUpdate('layout_columns', newVal)}/>
+            <div className="layout-tab">
+                <UI.toggleButtons
+                  defaultValue='1'
+                  options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
+                  onChange={(newVal)=>console.log(newVal)}
+                  wix-param="toggle_buttons_number"
+                  title="View mode:"/>
 
                 <hr className="divider-long"/>
 
-                <UI.slider
-                    title="Spacing (px)"
-                    min={0}
-                    max={50}
-                    defaultValue={10}
-                    onChange={(newVal)=>this.props.onUpdate('layout_spacing', newVal)}/>
+                <Thumbnails
+                  defaultValue='1'
+                  options={[{ value: '1', label: 'Clean', url: ''}, { value: '2', label: 'Rounded', url: ''}]}
+                  onChange={(newVal)=>console.log(newVal)}
+                  wix-param="toggle_buttons_number"
+                  title="Choose layout:"/>
+
+                <hr className="divider-long"/>
+
+                <UI.radioButtons
+                  title="Widget position"
+                  options={[
+                    { value: '1', label: 'Bottom right', className: 'classFirst'},
+                    { value: '2', label: 'Bottom left', className: 'classSecond'}]}
+                  defaultValue="1" onChange={(newVal)=>console.log(newVal + ' clicked')}
+                  />
             </div>
         )
     }

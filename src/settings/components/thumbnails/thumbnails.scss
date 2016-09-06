@@ -1,0 +1,49 @@
+@import "../../constants";
+
+.thumbnails {
+  $default-size: 60px;
+
+  padding: 19px 24px 26px;
+
+  .thumbnail-item {
+    display: inline-block;
+    text-align: center;
+
+    ~ .thumbnail-item {
+      margin-left: 12px;
+    }
+
+    img {
+      width: $default-size;
+      height: $default-size;
+      border-radius: 8px;
+      border: solid 1px #d6e1e8;
+      display: block;
+      box-sizing: border-box;
+      overflow: hidden;
+      cursor: pointer;
+
+      &.active {
+        border: solid 2px $link-text-color;
+      }
+    }
+  }
+
+  p {
+    font-size: 14px;
+    color: $main-text-color;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+
+  label {
+    mix-blend-mode: darken;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 300;
+    color: $link-text-color;
+    display: inline-block;
+    line-height: 12px;
+  }
+}
