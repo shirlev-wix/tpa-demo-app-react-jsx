@@ -21,9 +21,9 @@ export default class Settings extends React.Component {
           <div>
 
               <UI.toggleButtons
-                defaultValue='1'
+                defaultValue={this.props.viewMode}
                 options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                onChange={newVal =>console.log(newVal)}
+                onChange={this.props.changeViewMode}
                 wix-param="toggle_buttons_number"
                 title="View mode:"/>
 
