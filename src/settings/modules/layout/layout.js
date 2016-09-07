@@ -1,24 +1,15 @@
 import UI from 'editor-ui-lib';
 import React from 'react'
 import Thumbnails from './../../components/thumbnails/thumbnails'
+import ViewMode from './../../components/viewMode/viewMode'
 import './layout.scss';
 
 export default class Layout extends React.Component {
 
-  componentDidMount() {
-    this.props.registerToViewModeChange(this.refs.viewMode);
-  }
-
     render() {
         return (
             <div className="layout-tab">
-                <UI.toggleButtons
-                  ref="viewMode"
-                  defaultValue='1'
-                  options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                  onChange={(newVal) => this.props.changeViewMode(newVal)}
-                  wix-param="view-mode"
-                  title="View mode:"/>
+              <ViewMode changeViewMode={this.props.changeViewMode} registerToViewModeChange={this.props.registerToViewModeChange}/>
 
                 <hr className="divider-long"/>
 

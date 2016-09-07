@@ -1,6 +1,7 @@
 import UI from 'editor-ui-lib';
 import React from 'react'
 import Thumbnails from '../../components/thumbnails/thumbnails'
+import ViewMode from '../../components/viewMode/viewMode'
 import './design.scss';
 
 export default class Design extends React.Component {
@@ -12,10 +13,6 @@ export default class Design extends React.Component {
     this.setImagePreviewValue = this.setImagePreviewValue.bind(this);
     this.getImage = this.getImage.bind(this);
     this.hasImage = this.hasImage.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.registerToViewModeChange(this.refs.viewMode);
   }
 
   onAvatarThumbnailClick(value) {
@@ -50,14 +47,8 @@ export default class Design extends React.Component {
   render() {
     return (
       <div className="design-tab">
-        <UI.toggleButtons
-          ref="viewMode"
-          defaultValue='1'
-          options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-          onChange={newVal => this.props.changeViewMode(newVal)}
-          wix-param="view-mode"
-          title="View mode:"/>
 
+        <ViewMode changeViewMode={this.props.changeViewMode} registerToViewModeChange={this.props.registerToViewModeChange}/>
         <hr className="divider-long"/>
 
         <Thumbnails

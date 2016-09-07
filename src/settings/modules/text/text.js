@@ -1,25 +1,16 @@
 import UI from 'editor-ui-lib';
 import React from 'react'
+import ViewMode from '../../components/viewMode/viewMode'
 
 export default class Text extends React.Component {
     onClick () {
     }
 
-  componentDidMount() {
-    this.props.registerToViewModeChange(this.refs.viewMode);
-  }
-
   render () {
         return (
             <div className="text-tab">
 
-                <UI.toggleButtons
-                  ref="viewMode"
-                  defaultValue='1'
-                  options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                  onChange={newVal => this.props.changeViewMode(newVal)}
-                  wix-param="view-mode"
-                  title="View mode:"/>
+              <ViewMode changeViewMode={this.props.changeViewMode} registerToViewModeChange={this.props.registerToViewModeChange}/>
 
                 <hr className="divider-long"/>
 

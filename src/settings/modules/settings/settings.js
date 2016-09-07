@@ -1,6 +1,7 @@
 import UI from 'editor-ui-lib';
 import React from 'react'
 import './settings.scss';
+import ViewMode from '../../components/viewMode/viewMode'
 
 export default class Settings extends React.Component {
 
@@ -8,10 +9,6 @@ export default class Settings extends React.Component {
     super(props);
     this.state = {toggleSwitch: true};
     this.onToggleSwitchChange = this.onToggleSwitchChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.registerToViewModeChange(this.refs.viewMode);
   }
 
   onToggleSwitchChange(newVal) {
@@ -25,13 +22,7 @@ export default class Settings extends React.Component {
       return (
           <div>
 
-              <UI.toggleButtons
-                ref="viewMode"
-                defaultValue='1'
-                options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                onChange={newVal => this.props.changeViewMode(newVal)}
-                wix-param="view-mode"
-                title="View mode:"/>
+            <ViewMode changeViewMode={this.props.changeViewMode} registerToViewModeChange={this.props.registerToViewModeChange}/>
 
               <hr className="divider-long"/>
 
