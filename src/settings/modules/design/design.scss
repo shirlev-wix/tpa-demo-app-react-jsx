@@ -1,14 +1,27 @@
+@import "../../constants";
 
 .design-tab {
 
   .thumbnails {
 
-    &.agents-picture img {
-      width: 72px;
-      height: 72px;
+    &.agents-picture {
+
+      &.has-image img{
+        border-radius: 50%;
+      }
+
+      .img-wrapper {
+        width: 72px;
+        height: 72px;
+      }
+
+      .thumbnail-item:first-of-type .img-wrapper.active{
+        background-color: #eaf7ff;
+        border: 2px solid $link-text-color;
+      }
     }
 
-    &.radius img {
+    &.radius .img-wrapper {
       width: 51px;
       height: 51px;
     }

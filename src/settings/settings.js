@@ -10,6 +10,12 @@ import Support from './modules/support/support';
 import Text from './modules/text/text';
 
 export default class settings extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {viewMode: '1'};
+    }
+
     settingsUpdate (key, value) {
         const data = {key: key, value: value};
         Wix.Settings.triggerSettingsUpdatedEvent(data);
@@ -21,7 +27,7 @@ export default class settings extends React.Component {
             <UI.appSettings>
                 <UI.panelTabs defaultTabIndex={0}>
                     <Main tab="Main"/>
-                    <Layout tab="Layout" onUpdate={this.settingsUpdate}/>
+                    <Layout tab="Layout" viewMode={this.state.viewMode} onUpdate={this.settingsUpdate}/>
                     <Settings tab="Settings" onUpdate={this.settingsUpdate}/>
                     <Text tab="Text" onUpdate={this.settingsUpdate}/>
                     <Design tab="Design" onUpdate={this.settingsUpdate}/>

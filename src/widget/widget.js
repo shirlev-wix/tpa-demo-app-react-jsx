@@ -10,14 +10,14 @@ define(['react', 'Wix'], function (React, Wix) {
             Wix.addEventListener(Wix.Events.SETTINGS_UPDATED, this.onSettingsUpdate);
 
             // You can get the style params programmatically, un-comment the following snippet to see how it works:
-            /*Wix.Styles.getStyleParams(function (style) {
+            Wix.Styles.getStyleParams(function (style) {
              console.log(style);
-             });*/
+             });
 
             // You can also get the style every time it changes, try this:
-            /*Wix.addEventListener(Wix.Events.STYLE_PARAMS_CHANGE, function (style) {
+            Wix.addEventListener(Wix.Events.STYLE_PARAMS_CHANGE, function (style) {
              console.log(style);
-             });*/
+             });
         },
         onSettingsUpdate: function (update) {
             this.setState({

@@ -14,12 +14,15 @@ export default class Thumbnails extends React.Component {
     this.setState({
       active: option.value
     });
+    this.props.onChange(option.value);
   }
 
     render() {
       const thumbnails = this.props.options.map((option, index) =>
           <span key={`${option.value}-${index}`} className="thumbnail-item">
-            <img className={this.state.active === option.value ? 'active' : ''} onClick={() => this.onClick(option)} src={option.url}/>
+            <div className={`img-wrapper${this.state.active === option.value ? ' active' : ''}`} onClick={() => this.onClick(option)}>
+              <img src={this.state.active === option.value ? option.urlActive || option.url : option.url}/>
+            </div>
             <label>{option.label}</label>
           </span>
       );

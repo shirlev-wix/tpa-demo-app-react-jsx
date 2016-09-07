@@ -13,20 +13,26 @@
       margin-left: 12px;
     }
 
-    img {
+    .img-wrapper {
+      background-color: #eaf7ff;
       width: $default-size;
       height: $default-size;
       border-radius: 8px;
-      border: solid 1px #d6e1e8;
-      display: block;
+      //border: solid 1px #d6e1e8;
       box-sizing: border-box;
       overflow: hidden;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.active {
         border: solid 2px $link-text-color;
+        background-color: $link-text-color;
       }
+
     }
+
   }
 
   p {
