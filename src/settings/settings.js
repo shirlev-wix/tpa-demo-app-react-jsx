@@ -13,17 +13,21 @@ export default class settings extends React.Component {
         super(props);
         this.state = {
             activatedChat: false,
-            viewMode: '1'
+            toggles: []
         };
         this.checkMainTabComplete = this.checkMainTabComplete.bind(this);
         this.activateChat = this.activateChat.bind(this);
         this.changeViewMode = this.changeViewMode.bind(this);
+        this.registerToViewModeChange = this.registerToViewModeChange.bind(this);
     }
 
     settingsUpdate (key, value) {
         const data = {key: key, value: value};
         Wix.Settings.triggerSettingsUpdatedEvent(data);
-        console.log(data);
+    }
+
+    saveText(key, value) {
+
     }
 
     checkMainTabComplete() {
@@ -40,9 +44,15 @@ export default class settings extends React.Component {
     }
 
     changeViewMode(mode) {
-        this.setState({
-           viewMode: mode
-        });
+        this.state.toggles.forEach(toggle => {
+            toggle.setState({
+                checked: mode
+            })
+        })
+    }
+
+    registerToViewModeChange(ref) {
+        this.state.toggles.push(ref);
     }
 
     render () {
@@ -50,10 +60,10 @@ export default class settings extends React.Component {
             <UI.appSettings>
                 <UI.panelTabs defaultTabIndex={0} ref="panelTabs" onChange={index => !!index && this.checkMainTabComplete()}>
                     <Main tab="Main" onActivateChat={this.activateChat}/>
-                    <Layout tab="Layout" onUpdate={this.settingsUpdate} viewMode={this.state.viewMode} changeViewMode={this.changeViewMode}/>
-                    <Settings tab="Settings" onUpdate={this.settingsUpdate} viewMode={this.state.viewMode} changeViewMode={this.changeViewMode}/>
-                    <Text tab="Text" onUpdate={this.settingsUpdate} viewMode={this.state.viewMode} changeViewMode={this.changeViewMode}/>
-                    <Design tab="Design" onUpdate={this.settingsUpdate} viewMode={this.state.viewMode} changeViewMode={this.changeViewMode}/>
+                    <Layout tab="Layout" registerToViewModeChange={this.registerToViewModeChange} onUpdate={this.settingsUpdate} changeViewMode={this.changeViewMode}/>
+                    <Settings tab="Settings" registerToViewModeChange={this.registerToViewModeChange} onUpdate={this.settingsUpdate} changeViewMode={this.changeViewMode}/>
+                    <Text tab="Text" registerToViewModeChange={this.registerToViewModeChange} onUpdate={this.settingsUpdate} changeViewMode={this.changeViewMode}/>
+                    <Design tab="Design" registerToViewModeChange={this.registerToViewModeChange} onUpdate={this.settingsUpdate} changeViewMode={this.changeViewMode}/>
                 </UI.panelTabs>
             </UI.appSettings>
         )

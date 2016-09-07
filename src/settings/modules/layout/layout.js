@@ -4,14 +4,20 @@ import Thumbnails from './../../components/thumbnails/thumbnails'
 import './layout.scss';
 
 export default class Layout extends React.Component {
+
+  componentDidMount() {
+    this.props.registerToViewModeChange(this.refs.viewMode);
+  }
+
     render() {
         return (
             <div className="layout-tab">
                 <UI.toggleButtons
-                  defaultValue={this.props.viewMode}
+                  ref="viewMode"
+                  defaultValue='1'
                   options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                  onChange={this.props.changeViewMode}
-                  wix-param="toggle_buttons_number"
+                  onChange={(newVal) => this.props.changeViewMode(newVal)}
+                  wix-param="view-mode"
                   title="View mode:"/>
 
                 <hr className="divider-long"/>
@@ -19,8 +25,8 @@ export default class Layout extends React.Component {
                 <Thumbnails
                   defaultValue='1'
                   options={[{ value: '1', label: 'Clean', url: ''}, { value: '2', label: 'Rounded', url: ''}]}
-                  onChange={(newVal)=>console.log(newVal)}
-                  wix-param="toggle_buttons_number"
+                  onChange={(newVal)=>this.props.onUpdate('layout', newVal)}
+                  wix-param="layout"
                   title="Choose layout:"/>
 
                 <hr className="divider-long"/>
@@ -30,7 +36,9 @@ export default class Layout extends React.Component {
                   options={[
                     { value: '1', label: 'Bottom right', className: 'classFirst'},
                     { value: '2', label: 'Bottom left', className: 'classSecond'}]}
-                  defaultValue="1" onChange={(newVal)=>console.log(newVal + ' clicked')}
+                  defaultValue="1"
+                  wix-param="position"
+                  onChange={(newVal)=>this.props.onUpdate('position', newVal)}
                   />
             </div>
         )

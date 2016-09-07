@@ -10,7 +10,12 @@ export default class Settings extends React.Component {
     this.onToggleSwitchChange = this.onToggleSwitchChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.registerToViewModeChange(this.refs.viewMode);
+  }
+
   onToggleSwitchChange(newVal) {
+    this.props.onUpdate('visible-when-offline', newVal);
     this.setState({
       toggleSwitch: newVal
     });
@@ -21,10 +26,11 @@ export default class Settings extends React.Component {
           <div>
 
               <UI.toggleButtons
-                defaultValue={this.props.viewMode}
+                ref="viewMode"
+                defaultValue='1'
                 options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                onChange={this.props.changeViewMode}
-                wix-param="toggle_buttons_number"
+                onChange={newVal => this.props.changeViewMode(newVal)}
+                wix-param="view-mode"
                 title="View mode:"/>
 
               <hr className="divider-long"/>
@@ -40,6 +46,7 @@ export default class Settings extends React.Component {
               <UI.toggleSwitch
                 label="Show chat when offline"
                 defaultValue={this.state.toggleSwitch}
+                wix-param="visible-when-offline"
                 onChange={newVal => this.onToggleSwitchChange(newVal)}>
               </UI.toggleSwitch>
             { this.state.toggleSwitch ?
@@ -49,7 +56,8 @@ export default class Settings extends React.Component {
                 <UI.checkbox
                   label="Name"
                   defaultValue={true}
-                  onChange={(newVal)=>console.log(newVal)}>
+                  wix-param="required-field_name"
+                  onChange={(newVal)=>this.props.onUpdate('required-field_name', newVal)}>
                 </UI.checkbox>
                 <UI.checkbox
                   label="Email"
@@ -59,7 +67,8 @@ export default class Settings extends React.Component {
                 <UI.checkbox
                   label="Phone"
                   defaultValue={true}
-                  onChange={(newVal)=>console.log(newVal)}>
+                  wix-param="required-field_phone"
+                  onChange={(newVal)=>this.props.onUpdate('required-field_phone', newVal)}>
                 </UI.checkbox>
                 <UI.checkbox
                   label="Message"

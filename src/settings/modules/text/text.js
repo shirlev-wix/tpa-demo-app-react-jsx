@@ -5,15 +5,20 @@ export default class Text extends React.Component {
     onClick () {
     }
 
-    render () {
+  componentDidMount() {
+    this.props.registerToViewModeChange(this.refs.viewMode);
+  }
+
+  render () {
         return (
             <div className="text-tab">
 
                 <UI.toggleButtons
+                  ref="viewMode"
                   defaultValue='1'
                   options={[{ value: '1', label: 'open'}, { value: '2', label: 'closed'}]}
-                  onChange="(newVal)=>console.log(newVal)"
-                  wix-param="toggle_buttons_number"
+                  onChange={newVal => this.props.changeViewMode(newVal)}
+                  wix-param="view-mode"
                   title="View mode:"/>
 
                 <hr className="divider-long"/>
