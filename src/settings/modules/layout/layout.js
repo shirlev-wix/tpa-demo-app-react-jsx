@@ -1,3 +1,4 @@
+/* global Wix */
 import UI from 'editor-ui-lib';
 import React from 'react'
 import Thumbnails from './../../components/thumbnails/thumbnails'
@@ -6,6 +7,10 @@ import './layout.scss';
 
 export default class Layout extends React.Component {
 
+  changePosition(newPos) {
+    const compId = Wix.Utils.getOrigCompId();
+    Wix.Settings.setWindowPlacement(compId, Wix.WindowPlacement[newPos === '1' ? 'BOTTOM_RIGHT' : 'BOTTOM_LEFT']);
+  }
     render() {
         return (
             <div className="layout-tab">
@@ -29,7 +34,7 @@ export default class Layout extends React.Component {
                     { value: '2', label: 'Bottom left', className: 'classSecond'}]}
                   defaultValue="1"
                   wix-param="position"
-                  onChange={(newVal)=>this.props.onUpdate('position', newVal)}
+                  onChange={this.changePosition}
                   />
             </div>
         )

@@ -69,8 +69,8 @@ export default class Design extends React.Component {
         <Thumbnails
           className="radius"
           defaultValue='0'
-          options={[{ value: '0', url: '0px.png', urlActive: '0px_2.png'}, { value: '8', url: '8px.png', urlActive: '8px_2.png'}, { value: '20', url: '20px.png', urlActive: '20px_2.png'}]}
-          onChange={(newVal)=>this.props.onUpdate('radius', newVal)}
+          options={[{ value: '0', url: '0px.png', urlActive: '0px_2.png'}, { value: '6', url: '8px.png', urlActive: '8px_2.png'}, { value: '20', url: '20px.png', urlActive: '20px_2.png'}]}
+          onChange={(newVal)=>this.props.onUpdate('RADIUS_CHANGE', newVal)}
           wix-param="radius"
           title="Radius"/>
 

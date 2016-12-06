@@ -44,6 +44,8 @@ export default class settings extends React.Component {
     }
 
     changeViewMode(mode) {
+        this.settingsUpdate('VIEW_MODE_CHANGE', mode === '1' ? 'EXPAND' : 'COLLAPSE');
+        console.log('mode', mode);
         this.state.toggles.forEach(toggle => {
             toggle.setState({
                 checked: mode
